@@ -15,3 +15,6 @@
 *.exe
 *.out
 *.app
+
+# Ignore this directory
+nrlmsise-00.20100516
