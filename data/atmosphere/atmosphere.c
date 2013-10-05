@@ -19,11 +19,11 @@ main()
      
      int doy = 200;
      int sec = 12*3600 + 0 * 60 + 0;
-     double g_lat = 52.0;
-     double g_long = 0.0;
+     double g_lat = 52.44;
+     double g_long = -0.11;
      double alt;
      printf("Altitude, He, N2, O2, Ar, Total, T\n");
-     for (alt=0.0;alt<50.000;alt+=0.005) {
+     for (alt=0.0;alt<150.000;alt+=0.005) {
 	  input.doy = doy;
 	  input.year = 0; // Not used
 	  input.sec = sec;
