@@ -40,14 +40,35 @@ d = 2.0 * float(adata[0]['N2']) * float(mass['Nitrogen']) + 2.0*float(adata[0]['
 
 d /= constants.Avogadro
 
-print 'Density at ground level', d*1000
+print 'Density at ground level (kg/m^3)', d*1000
 
-absorp = np.zeros((len(cdata), len(adata)))
+
+absorp = np.zeros((len(cdata), len(adata))) # This ends up in cm^-1
+dens = np.zeros((len(adata),))
+
 for alt in xrange(len(adata)):
     for mev in xrange(len(cdata)):
         absorp[mev, alt] = ((2.0 * float(adata[alt]['N2']) * float(mass['Nitrogen']) * float(cdata[mev]['Nitrogen'])) +
                             (2.0 * float(adata[alt]['O2']) * float(mass['Oxygen']) * float(cdata[mev]['Oxygen'])) +
                             (float(adata[alt]['Ar']) * float(mass['Argon']) * float(cdata[mev]['Argon']))) / constants.Avogadro
+        
+    dens[alt] = ((2.0 * float(adata[alt]['N2']) * float(mass['Nitrogen'])) +
+                 (2.0 * float(adata[alt]['O2']) * float(mass['Oxygen'])) +
+                 (float(adata[alt]['Ar']) * float(mass['Argon']))) / constants.Avogadro
+
+alt_xrng = []
+for alt in xrange(len(adata)):
+    alt_xrng.append(float(adata[alt]['Altitude']))
+
+pyplot.semilogy(alt_xrng, 1000*dens, '-+')
+pyplot.show()
+
+xrng = []
+for x in xrange(len(cdata)):
+    xrng.append(float(cdata[x]['MeV'])*1e6)
+
+#pyplot.semilogx(xrng, np.exp(-100* absorp[:,0]), '-+')  # Plot out absorption for 100cm of air at ground level
+#pyplot.show()
 
 dalt = float(adata[1]['Altitude']) - float(adata[0]['Altitude'])
 
@@ -63,15 +84,11 @@ for x in alt_res:
 for alt in xrange(len(adata)-1, 0, -1):
     for mev in xrange(len(cdata)):
         
-        res[mev] = res[mev] * (1.0 -  (dalt * 100 * float(absorp[mev,alt])))
+        res[mev] = res[mev] * np.exp(-dalt * 100.0 * absorp[mev,alt])
 
         for x in alt_res:
             if res[mev] < x and res_res[str(x)][mev] < 0:
                 res_res[str(x)][mev] = float(adata[alt]['Altitude']) / 1000.0
-
-xrng = []
-for x in xrange(len(cdata)):
-    xrng.append(float(cdata[x]['MeV'])*1e6)
 
 for x in alt_res:
     pyplot.semilogx(xrng, res_res[str(x)], '-+', label=str(x))
