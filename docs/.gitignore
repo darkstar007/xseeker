@@ -1,4 +1,4 @@
-todo.aux
-todo.log
-todo.synctex.gz         
+*.aux
+*.log
+*.synctex.gz         
 

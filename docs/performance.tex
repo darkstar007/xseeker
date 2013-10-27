@@ -1,0 +1,40 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\begin{document}
+\section*{XRT Performance Calculation}
+
+\section{Introduction}
+
+\section{X-ray Source}
+
+"The Crab nebula is the brightest astrophysical source in the $\gamma$-ray sky ($E > 30$ keV)" (add reference). The shape of the spectrum can be found seen in Figure \ref{fig:crabSpectrum}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{./crabSpectrum}
+\caption[$\gamma$-ray spectrum of Crab nebula]{Taken from}
+\label{fig:crabSpectrum}
+\end{figure}
+
+We can approximate the spectrum as: \[ \frac{\partial N}{\partial E} = N_{0} \left( \frac{E}{1 GeV} \right) ^{-\Gamma} \exp \left( - \frac{E}{E_{cutoff}} \right) \]
+
+Which is valid in the energy range 0.75-300GeV. Best fit values for $N_{0}$ is $4.3 \times 10^{-10} ph cm^{-2} s^{-1} MeV^{-1}$, $\Gamma = 2.20$ and $E_{cutoff} = 77 MeV$. (Insert ref.). 
+
+\section{Atmospheric Absorption}
+
+\section{Detector Performance}
+\subsection{Geiger-Mueller Tube}
+\subsection{Scintillation Crystal}
+
+\section{System Performance}
+
+\section{Conclusions}
+
+\section{References}
+
+\end{document}
