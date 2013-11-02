@@ -14,7 +14,7 @@ from subprocess import Popen, PIPE
 
 symbols = ['H', 'Na', 'Mg', 'Ca', 'Ti', 'Fe', 'Co', 'Ni', 'Cu', 'Zn',
            'Pt', 'Au', 'Hg', 'Pb', 'U', 'Al', 'C', 'Ge', 'F', 'Cl', 'I',
-           'Si', 'He', 'Ne', 'Ar', 'Xe']
+           'Si', 'He', 'Ne', 'Ar', 'Xe', 'O', 'N']
 
 for sym in symbols:
     cmd_args = {'name': sym, 'chem_symbol': sym, 'file': sym+'.txt'}

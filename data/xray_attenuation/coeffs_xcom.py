@@ -1,29 +1,9 @@
 
-symbols = ['H', 'Na', 'Mg', 'Ca', 'Ti', 'Fe', 'Co', 'Ni', 'Cu', 'Zn',
-           'Pt', 'Au', 'Hg', 'Pb', 'U', 'Al', 'C', 'Ge', 'F', 'Cl', 'I',
-           'Si', 'He', 'Ne', 'Ar', 'Xe']
+from read_xcom_data import read_xcom_data
 
-data = {}
-for sym in symbols:
-    fp = open(sym+'.txt')
-    data[sym] = {}
-    data[sym]['Mev'] = []
-    data[sym]['mu'] = []
-    for ln in fp:
-        bits = ln.split()
-        if len(bits) == 8 or len(bits) < 10:
-            #print len(bits), ln[:-1]
-            try:
-                if len(bits) == 8:
-                    data[sym]['Mev'].append(float(bits[0]))
-                    data[sym]['mu'].append(float(bits[6]))
-                if len(bits) == 10:
-                    data[sym]['Mev'].append(float(bits[2]))
-                    data[sym]['mu'].append(float(bits[9]))
-            except ValueError, e:
-                pass
+data = read_xcom_data()
 
-    fp.close()
-
-print data
-
+print len(data['O']['Mev']), len(data['N']['Mev']), len(data['Ar']['Mev'])
+print data['O']['Mev']
+print data['N']['Mev']
+print data['Ar']['Mev']
